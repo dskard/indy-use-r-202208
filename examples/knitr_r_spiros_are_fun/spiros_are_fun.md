@@ -1,0 +1,32 @@
+# Introduction to Spirographs
+
+The spirograph equation for three of more wheels can be generalized as follows:
+
+$$z(t) = \sum_{k=1}^n a_k e^{i2\pi(n_kt+\theta_k)}$$
+
+This program solves those equations for three wheels, assuming all of the $a$ coefficients are 1 and $\theta$ coefficients are 0. Find more details online at <http://linuxgazette.net/133/luana.html>.
+
+```r
+library(tibble)
+
+spiro <- function(n1,n2,n3) {
+  t <- seq(0,1,length.out=1000)
+  z <- exp(1i*2*pi*n1*t) + exp(1i*2*pi*n2*t) + exp(1i*2*pi*n3*t)
+  result <- tibble(x=Re(z),y=Im(z))
+  return (result)
+}
+
+result <- spiro(13,-7,-3)
+result
+```
+
+Plot the Spirograph
+
+```r
+library(ggplot2)
+
+ggplot(data=result,aes(x=x,y=y)) +
+    geom_path() +
+    xlab("Real(z)") +
+    ylab("Imag(z)")
+```

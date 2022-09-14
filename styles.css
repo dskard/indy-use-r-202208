@@ -1,0 +1,9 @@
+
+.image-center {
+  display: block;
+  margin: auto;
+}
+
+.border-shown {
+  border: 3px solid black;
+}

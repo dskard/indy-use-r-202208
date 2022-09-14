@@ -1,0 +1,428 @@
+---
+title: "Quarto Experience"
+author: "Derrick Kearney"
+format:
+  revealjs:
+    slide-number: true
+    chalkboard:
+      buttons: false
+    css: styles.css
+engine: knitr
+---
+
+![](images/my_communication_outputs.svg){fig-align="center"}
+
+::: {.notes}
+In my daily work, I don't do a lot of writing. Most of my communication-y
+things I end up creating are web pages, slides, and occasionally a PDF.
+:::
+
+---
+
+![](images/my_communication_outputs_rmarkdown.svg){fig-align="center"}
+
+::: {.notes}
+If I am doing this for myself, then I tend to write my web pages and PDFs
+in R Markdown.
+:::
+
+---
+
+![](images/my_communication_outputs_google.svg){fig-align="center"}
+
+::: {.notes}
+And I use Google Slides for If I am doing this for myself, then I tend to write my web pages and PDFs
+in R Markdown.
+
+I do this because it "mostly" fits with the way I work. I like programming, but I don't do much with designing webpages . I just need to be able to share ideas, in formats that other people can open and view, and without needing to be an expert in the newest trends.
+
+:::
+
+---
+
+![](images/my_workflows.svg){fig-align="center"}
+
+::: {.notes}
+I'm also looking for workflows that fit in with the way I work with other things I create.
+
+For me, the other things I'm creating are software, and my workflow includes stuff like:
+1. saving versions to a source code repository
+2. collaborating with others
+3. and sometimes simple stuff like performing text search through files to find where I last referenced an idea.
+:::
+
+---
+
+![](images/quarto_website_20220815.png){fig-align="center"}
+
+::: {.notes}
+A few months ago, I started hearing people talking more about a new tool, called Quarto, for building html, slides, and pdfs. So I decided to make it one of my goals for the summer to get a better understanding of what it was about.
+:::
+
+
+---
+
+![](images/quarto_website_what_is_quarto.png){fig-align="center"}
+
+
+::: {.notes}
+When I went to the Quarto website, I noticed this line.
+
+My first thought was "How is this different from R Markdown?"
+:::
+
+
+## Different from R Markdown?
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/quarto_website_20220815.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](images/rmarkdown_website_20220815.png){fig-align="center"}
+:::
+
+::::
+
+<!--
+:::: {.columns .smaller}
+
+::: {.column width="50%"}
+- Literate Programming
+- 
+:::
+
+::: {.column width="50%"}
+- Literate Programming
+- 
+:::
+
+::::
+-->
+
+::: {.notes}
+My fist thought "How is this different from R Markdown"?
+
+Both allow the you do Literate Programming, where you mix text and executable code to form an output
+
+Both support multiple output formats like:
+1. html websites
+2. books,
+3. presentation formats like beamer, ppt, revealjs
+4. document format like pdfs, word, latex
+5. interactive documents with Shiny or other components embedded within them
+
+Both use a Markdown file with a YAML header for configuration
+:::
+
+## The Good News 
+
+### R Markdown feels familiar
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/quarto_website_20220815_R.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+:::
+
+::::
+
+
+::: {.notes}
+If you are familiar and comfortable with R Markdown, Quarto will feel pretty much the same
+
+Maybe a little better with some of its simplified features, like:
+1. layout
+2. 
+:::
+
+## The Better News 
+
+### Mixing in other languages gets easier
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](images/quarto_website_20220815_R.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](images/quarto_website_20220815_Julia.png){fig-align="center"}
+:::
+
+::::
+
+
+::: {.notes}
+If you are working with other people, possibly in other programming languages, or you just have a multi-language environment, Quarto can be the system that ties all of the engines together.
+:::
+
+
+## Quarto
+### a multi-language, multi-engine system
+
+::: {fig-align="center"}
+![](images/rstudio-qmd-how-it-works.png)
+:::
+
+::: {.notes}
+How Quarto works is that you write a qmd file, with all your text and code.
+Quarto reads the YAML configuration to understand how to format the output.
+If your qmd file has code blocks that need to be executed, Quarto will look
+in your configuration to figure out which processing engine to choose. If
+your YAML configuration specifies "knitr" or if it finds R code chunks in
+the file, the R library knitr will be used to execute the code blocks and
+convert the qmd file to a plain markdown file. Then pandoc will convert the
+markdown file to its final output format.
+:::
+
+## Quarto
+### a multi-language, multi-engine system
+
+:::{fig-align="center"}
+![](images/rstudio-qmd-how-it-works.png)
+![](images/qmd-how-it-works.png)
+:::
+
+::: {.notes}
+Similarly, if Quarto sees a configuration specifying the Jupyter engine or
+detects Python, it will run the code chunks through Jupyter, create a markdown
+file, and then pandoc will finish by converting the markdown to its final
+format.  
+
+You could imagine having multiple documents in different languages and being
+able to render them together with a single system.
+
+We don't have to imagine it, let's try it out.
+:::
+
+## Let's Try It Out!
+
+:::: {.columns}
+
+::: {.column width="45%"}
+![](images/original_spirograph_jr_by_hasbro.png)
+![](images/model_spirograph_equation.png)
+![](images/three_wheeled_spirograph_equation.png)
+:::
+
+::: {.column width="45%"}
+![](images/plotting_spirograph_equations_with_gnuplot.png)
+:::
+
+::::
+
+
+::: {.notes}
+We'll use our spirograph program to help us drive the example.
+If you are not familiar with spirograph....
+:::
+
+<!--
+## Why Quarto?
+
+Quarto enables you to weave together content and executable code into a finished output, like document, presentation, website.
+
+## Why am I interested in Quarto?
+
+It fits with the way I work, my workflow.
+
+I like programming, so if I can program my writings and presentations, those activities will better fit into my lifestyle.
+
+I want to be able to archive my output (articles and presentations) in the same place i archive my programs, currently a git repository.
+
+I like text versions of things. I use writings as place to store memories. With text versions, I can use tools like `grep` to help me find the documents where I referenced an idea.
+
+I usually build all of my presentation with Google Slides. A lot of my slides end up being images describing a topic or code blocks.
+
+Likes:
+- quickly create scenes with small images, arrows, boxes, text (pics)
+- drag and drop images to the exact location (pic)
+
+Deal with:
+- code blocks are time consuming to create (pic)
+- multiple slides showing the progression of a topic are time consuming to create, especially if there is a change in one of the early slides.
+
+Hopes:
+- Focus on the content and leave the formatting for later.
+- Learn a new system to help me communicate ideas in a web-centric world without needing to learn 20 years of web development history and best practices. 
+- [Code line highlighting](https://quarto.org/docs/presentations/revealjs/#line-highlighting) 
+
+I'm ready to be dropped into a "pit of success"!
+
+## Today's Focus
+
+- High level overview of what is happening behind the scenes in Quarto (pic)
+
+- Take a look at the following types of document
+  - Presentations
+  - Websites
+  - Interactive Docs
+  
+- Build a document, maybe turn it into a presentation.
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished output, like document, presentation, website.
+
+creating output using the R language
+pic of high level - <https://quarto.org/docs/get-started/hello/rstudio.html#how-it-works>
+
+if you were to use another language, like Python or Julia, it would look like this
+pic of high level - <https://quarto.org/docs/get-started/hello/vscode.html#how-it-works>
+
+Using Jupyter's Python or Julia kernels as the backend.
+
+I personally still like writing my documents in R Markdown, so I'll be sticking with that.
+
+## Tools
+
+I also like using the RStudio IDE or Vi for writing my Quarto docs.
+
+The RStudio IDE comes with a version of Quarto baked into it, so if you go that route, you don't have to install anything else. If you want to use your own text editor, like Vi, then you'll need to install Quarto on your system
+
+Installing is simple...tell them how to install
+
+After that, you can run `quarto preview <document>` and it will render the document and open a web browser if it is a web based output.
+
+If you are using VSCode, there is an extension you can install to get buttons for rendering
+
+Just for completeness, the Quarto site shows you how to integrate Quarto into Jupyter Lab. I've never done this, so I can't speak to the experience, but I will note that they are talking about Jupyter Lab and not Jupyter Notebook, which is a slightly different thing.
+
+## blah
+
+Our goal is to get something that looks like this:
+show pic of quarto document on the left side
+
+To look something like this:
+show pic of html document on the right side.
+
+And quarto is going to get us there.
+
+## blahh
+
+Quarto builds on the ideas of literate programming.
+Just like ... list literate programming systems of the past ...
+With Quarto, we'll be taking a document with
+prose
+and code
+and a little configuration at the top
+and convert it into another document, with the ability to execute code along the way and show the executed code in out output document.
+
+## let's take a look at a few examples
+
+At the top of all Quarto files, there is a YAML header.
+It mainly holds configuration settings for the document. Things like, the title, author, date, and instructions for how to render the overall document.
+
+## What I'm excited about
+
+<br/>
+
+#### Quarto command line interface
+
+<br/>
+
+To render documents in R Markdown, I used to have to:
+```{bash}
+#| eval: false
+#| echo: true
+#| code-overflow: wrap
+#| code-line-numbers: false
+Rscript -e "rmarkdown::render('spiro.Rmd',output_format=c('html_document'))"
+```
+
+<br/>
+
+With quarto, I can:
+```{bash}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+quarto render spiro.qmd --to html
+```
+
+-->
+
+<!--#
+    ```{.python .code-overflow-wrap}
+    Rscript -e "rmarkdown::render('spirograph.Rmd',output_format=c('html_document'))"
+    ```
+    ```{.python}
+    #| code-overflow: wrap
+    Rscript -e "rmarkdown::render('spirograph.Rmd',output_format=c('html_document'))"
+    ```
+    ```{{bash}}
+    Rscript -e "rmarkdown::render('spirograph.Rmd',output_format=c('html_document'))"
+    ```
+   ```{bash}
+   #| eval: false
+   #| echo: fenced
+   #| code-overflow: wrap
+   Rscript -e "rmarkdown::render('spirograph.Rmd',output_format=c('html_document'))"
+   ```
+   ```{.bash}
+   Rscript -e "rmarkdown::render('spirograph.Rmd',output_format=c('html_document'))"
+   ```
+-->
+
+## Still to explore
+
+1.  Quarto Projects - a way of laying out your directory for rendering multiple `.qmd` files into a single output (like books and websites) https://quarto.org/docs/projects/quarto-projects.html 
+
+2. Publishing to Quarto Pub, Netlify, GitHub Pages,
+
+3. Convert my website from R Markdown to Quarto
+
+4. Exploring the interactivity section: https://quarto.org/docs/interactive/
+
+## Stuff I probably won't get to, but may be interesting to you
+
+1. Using Quarto to produce journal articles: https://quarto.org/docs/journals/
+
+## More info on Quarto
+
+1. rstudio::conf keynote
+2. tom mock presentation
+3. Quarto Website <https://quarto.org> - lots of docs and examples
+4. Quarto Github <https://github.com/quarto-dev>
+
+## Upcoming events
+1. R/Medicine conference Aug 23-26, 2022: https://events.linuxfoundation.org/r-medicine/
+
+---
+
+---
+
+## Frustrations - Styles
+
+How do I know what styles are available?
+
+::: {.notes}
+Here were my attempts at centering an image.
+First I found some CSS on the internet that seemed to work.
+Then I tried putting that in a "styles.css" file, and creating my own class, but that didn't seem to work.
+In the end I found the `fig-align="center"` property.
+:::
+
+:::: {.columns}
+
+::: {.column width="30%" .border-shown}
+![](images/quarto_website_20220815.png){style="display:block; margin:auto;"}
+:::
+
+::: {.column width="30%" .border-shown}
+![](images/quarto_website_20220815.png){.image-center}
+:::
+
+::: {.column width="30%" .border-shown}
+![](images/quarto_website_20220815.png){fig-align="center"}
+:::
+
+::::
